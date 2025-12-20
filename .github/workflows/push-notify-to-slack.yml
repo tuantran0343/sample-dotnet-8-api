@@ -22,8 +22,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Notify Slack on Success
-      - uses: slackapi/slack-github-action@v1.26.0
-      - with:
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
