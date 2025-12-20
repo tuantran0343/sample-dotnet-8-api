@@ -27,14 +27,5 @@ jobs:
           webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           payload: |
             {
-              "text": "🚀 Deploy thành công! Image mới đã push lên Docker Hub",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*🚀 Deploy thành công!*\nImage mới đã push lên Docker Hub\n• Repo: ${{ github.repository }}\n• Branch: ${{ github.ref_name }}\n• <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|Xem workflow>"
-                  }
-                }
-              ]
+              "text": "🚀 Deploy thành công! Image mới đã push lên Docker Hub"
             }
