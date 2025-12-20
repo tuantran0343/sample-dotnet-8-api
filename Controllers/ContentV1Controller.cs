@@ -21,3 +21,8 @@ namespace SampleAPI.Controllers
         }
     }
 }
+
+public class SimpleModel
+{
+    public string Name { get; set; }
+}
