@@ -29,4 +29,12 @@ jobs:
       - name: "always console log"
         run: |
           echo "Always. Hi! there"
-          echo "2 + 3 = $((2 + 3))"
+          echo "2 + 3 = $((2 + 3))"          
+
+  get-info:
+    runs-on:
+      - ubuntu-slim
+    steps:
+      - name: "log information"
+        run: |
+          echo "LABEL NAME => ${{ github.event.label.name }} , ref_name = ${{ github.ref_name}}"
