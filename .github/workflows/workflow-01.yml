@@ -13,8 +13,8 @@ on:
   pull_request:
     branches:
       - feat/add-new-string
-    types:
-      - labeled
+    types: [labeled, unlabeled]
+
   issues:
     types: [labeled, unlabeled]
 
@@ -22,7 +22,7 @@ on:
 
 jobs:
   log-simple-only:
-    if: github.ref_name == 'feat/add-new-string' && github.event.action == 'labeled'
+    if: github.ref_name == 'feat/add-new-string' && github.event.label.name == 'test-notify'
     runs-on:
       - ubuntu-slim
     steps:
@@ -50,4 +50,6 @@ jobs:
           LABEL NAME => ${{ github.event.label.name }} 
           ref_name = ${{ github.ref_name}} 
           current VARS = ${{vars.TAGS_TEST_NOTIFY}}
-          FULL_CONTEXT = ${{toJson(github)}}"
+          FULL_CONTEXT = ${{toJson(github)}}
+          EVENT = ${{toJson(github.event)}}
+          "
