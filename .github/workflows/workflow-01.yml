@@ -10,17 +10,15 @@ on:
       - feat/add-new-string
     tags:
       - test-notify
-  pull_request:
-    types: [labeled, unlabeled]
-
-  issues:
-    types: [labeled, unlabeled]
-
-# (github.event.label.name == vars.TAGS_TEST_NOTIFY || github.event.action == 'labeled')
-
+  workflow_dispatch:
+    inputs:
+      check_label:
+        type: string
+        default: test-notify
+        
 jobs:
   log-simple-only:
-    if: github.event.label.name == vars.TAGS_TEST_NOTIFY
+    if: github.event.inputs.check_label.name == vars.TAGS_TEST_NOTIFY
     runs-on:
       - ubuntu-slim
     steps:
