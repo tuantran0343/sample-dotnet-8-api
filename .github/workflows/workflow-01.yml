@@ -3,18 +3,25 @@ name: WORKFLOW-NET-01
 on:
   push:
     branches:
-      - feat/add-new-string
+      - &branch_name "feat/add-new-string"
     tags:
-      - test-notify
+      - &tagLabled test-notify
+  pull_request:
+    branches:
+      - *branch_name
+    types:
+      - labeled
 
 jobs:
   log-simple-only:
-    if: github.ref == 'refs/tags/test-notify' && github.ref_name == 'feat/add-new-string'
+    if: github.ref_name == 'feat/add-new-string' && (github.ref == 'refs/tags/test-notify' || github.event.label.name == vars.TAGS_TEST_NOTIFY)
     runs-on:
       - ubuntu-slim
     steps:
       - name: "console simple log"
-        run: "echo 'Hello world'"
+        run: |
+          echo 'Hello world'
+          echo 'Current label in vars is "${{vars.TAGS_TEST_NOTIFY}}"'
 
   always-log:
     runs-on: ubuntu-slim
