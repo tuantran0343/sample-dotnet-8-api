@@ -18,7 +18,7 @@ on:
 
 jobs:
   log-simple-only:
-    if: ${{ (inputs.check_label || vars.TAGS_TEST_NOTIFY) == vars.TAGS_TEST_NOTIFY }}
+    if: github.event.inputs.check_label == vars.TAGS_TEST_NOTIFY
     runs-on:
       - ubuntu-slim
     steps:
@@ -26,6 +26,7 @@ jobs:
         run: |
           echo 'Hello world'
           echo 'Current label in vars is "${{vars.TAGS_TEST_NOTIFY}}"'
+          echo 'Next value is "${{github.event.inputs.check_label}}"'
 
   always-log:
     runs-on: ubuntu-slim
@@ -46,7 +47,6 @@ jobs:
           LABEL NAME => ${{ github.event.label.name }} 
           ref_name = ${{ github.ref_name}} 
           current VARS = ${{vars.TAGS_TEST_NOTIFY}}
-          FULL_CONTEXT = ${{toJson(github)}}
           EVENT = ${{toJson(github.event)}}
-          AAAAA = ${{inputs.check_label}}
+          DATA = ${{github.event.inputs.check_label}}
           "
