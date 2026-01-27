@@ -29,7 +29,7 @@ jobs:
       - name: "always console log"
         run: |
           echo "Always. Hi! there"
-          echo "2 + 3 = $((2 + 3))"          
+          echo "2 + 3 = $((2 + 3))"
 
   get-info:
     runs-on:
@@ -37,4 +37,8 @@ jobs:
     steps:
       - name: "log information"
         run: |
-          echo "LABEL NAME => ${{ github.event.label.name }} , ref_name = ${{ github.ref_name}}"
+          echo "
+          EVENT_NAME = ${{github.event_name}}
+          LABEL NAME => ${{ github.event.label.name }} 
+          ref_name = ${{ github.ref_name}} 
+          current VARS = ${{vars.TAGS_TEST_NOTIFY}}"
