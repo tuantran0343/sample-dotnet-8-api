@@ -20,7 +20,7 @@ on:
 
 jobs:
   log-simple-only:
-    if: github.ref_name == 'feat/add-new-string' && (github.event.label.name == vars.TAGS_TEST_NOTIFY)
+    if: github.ref_name == 'feat/add-new-string' && (github.event.label.name == vars.TAGS_TEST_NOTIFY || github.action == 'labeled')
     runs-on:
       - ubuntu-slim
     steps:
