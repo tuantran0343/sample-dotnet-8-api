@@ -5,9 +5,9 @@ name: Clean And Build Project
 
 on:
   push:
-    branches: [ "main-1" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main-1" ]
+    branches: [ "main" ]
 
 jobs:
   vietnam-build:
