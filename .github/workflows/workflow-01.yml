@@ -1,0 +1,17 @@
+name: WORKFLOW-NET-01
+
+on:
+  push:
+    branches:
+      - feat/add-new-string
+    tags:
+      - test-notify
+
+jobs:
+  log-simple:
+    runs-on:
+      - ubuntu-slim
+    steps:
+      - name: "console simple log"
+        run: "echo 'Hello world'"
+
