@@ -11,6 +11,8 @@ on:
       - *branch_name
     types:
       - labeled
+  issues:
+    types: [labeled, unlabeled]
 
 jobs:
   log-simple-only:
