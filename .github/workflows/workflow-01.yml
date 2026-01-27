@@ -18,9 +18,11 @@ on:
   issues:
     types: [labeled, unlabeled]
 
+# (github.event.label.name == vars.TAGS_TEST_NOTIFY || github.event.action == 'labeled')
+
 jobs:
   log-simple-only:
-    if: github.ref_name == 'feat/add-new-string' && (github.event.label.name == vars.TAGS_TEST_NOTIFY || github.event.action == 'labeled')
+    if: github.ref_name == 'feat/add-new-string'
     runs-on:
       - ubuntu-slim
     steps:
