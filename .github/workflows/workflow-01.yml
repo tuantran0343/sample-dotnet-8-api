@@ -15,10 +15,10 @@ on:
       check_label:
         type: string
         default: test-notify
-        
+
 jobs:
   log-simple-only:
-    if: github.event.inputs.check_label.name == vars.TAGS_TEST_NOTIFY
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.check_label == vars.TAGS_TEST_NOTIFY
     runs-on:
       - ubuntu-slim
     steps:
