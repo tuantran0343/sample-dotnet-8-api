@@ -22,7 +22,7 @@ on:
 
 jobs:
   log-simple-only:
-    if: github.ref_name == 'feat/add-new-string'
+    if: github.ref_name == 'feat/add-new-string' && github.event.action == 'labeled'
     runs-on:
       - ubuntu-slim
     steps:
