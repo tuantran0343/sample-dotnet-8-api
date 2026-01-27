@@ -48,5 +48,5 @@ jobs:
           current VARS = ${{vars.TAGS_TEST_NOTIFY}}
           FULL_CONTEXT = ${{toJson(github)}}
           EVENT = ${{toJson(github.event)}}
-          AAAAA = ${{toJson(inputs)}}
+          AAAAA = ${{inputs.check_label}}
           "
