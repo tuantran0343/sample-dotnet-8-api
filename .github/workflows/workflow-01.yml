@@ -1,5 +1,9 @@
 name: WORKFLOW-NET-01
 
+permissions:
+  issues: write
+  contents: read
+
 on:
   push:
     branches:
@@ -43,4 +47,5 @@ jobs:
           EVENT_NAME = ${{github.event_name}}
           LABEL NAME => ${{ github.event.label.name }} 
           ref_name = ${{ github.ref_name}} 
-          current VARS = ${{vars.TAGS_TEST_NOTIFY}}"
+          current VARS = ${{vars.TAGS_TEST_NOTIFY}}
+          FULL_CONTEXT = ${{toJson(github)}}"
