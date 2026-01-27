@@ -8,10 +8,17 @@ on:
       - test-notify
 
 jobs:
-  log-simple:
+  log-simple-only:
+    if: github.ref == 'refs/tags/test-notify' && github.ref_name == 'feat/add-new-string'
     runs-on:
       - ubuntu-slim
     steps:
       - name: "console simple log"
         run: "echo 'Hello world'"
 
+  always-log:
+    runs-on: ubuntu-slim
+    steps:
+      - name: "always console log"
+        run: |
+          echo "Always. Hi! there"
