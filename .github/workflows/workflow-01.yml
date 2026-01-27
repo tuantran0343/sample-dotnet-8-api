@@ -11,8 +11,6 @@ on:
     tags:
       - test-notify
   pull_request:
-    branches:
-      - feat/add-new-string
     types: [labeled, unlabeled]
 
   issues:
