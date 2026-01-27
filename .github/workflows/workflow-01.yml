@@ -22,7 +22,7 @@ on:
 
 jobs:
   log-simple-only:
-    if: github.event.label.name == vars.TAGS_TEST_NOTIFY && github.event.action == 'labeled'
+    if: github.event.label.name == vars.TAGS_TEST_NOTIFY
     runs-on:
       - ubuntu-slim
     steps:
