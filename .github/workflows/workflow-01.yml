@@ -18,7 +18,7 @@ on:
 
 jobs:
   log-simple-only:
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.check_label == vars.TAGS_TEST_NOTIFY
+    if: inputs.check_label == vars.TAGS_TEST_NOTIFY
     runs-on:
       - ubuntu-slim
     steps:
