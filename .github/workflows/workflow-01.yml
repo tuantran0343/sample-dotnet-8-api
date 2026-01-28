@@ -55,6 +55,6 @@ jobs:
       - ubuntu-slim
     steps:      
       - name: "Run custom action nemo"
-        uses: ./.github/actions/action-nemo
+        uses: ./.github/actions/actions-nemo
         with:
           name: "Gemini"
