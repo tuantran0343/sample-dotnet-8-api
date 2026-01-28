@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches:
-      - feat/add-new-string
+      - feat/*
     tags:
       - test-notify
   workflow_dispatch:
