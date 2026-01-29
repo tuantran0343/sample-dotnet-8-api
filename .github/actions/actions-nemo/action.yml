@@ -10,10 +10,10 @@ inputs:
 outputs:
   greeting-message:
     description: 'Lời chào đầy đủ'
-    value: ${{ steps.generate.outputs.greeting-message }}
+    value: ${{ steps.set-greeting.outputs.greeting_message }}
   vietnam-greeting:
     description: 'Lời chào talk'
-    value: ${{ steps.generate.outputs.vietnam-greeting }}
+    value: ${{ steps.set-greeting.outputs.vietnam_greeting }}
 
 runs:
   using: "composite"
@@ -22,9 +22,10 @@ runs:
       shell: bash
 
     - name: Set greeting outputs
+      id: set-greeting
       shell: bash
       run: |
-        full_greeting="Hello ${{ inputs.name }}! Welcome to GitHub Actions"
+        full_greeting="Hello ${{ inputs.name }} Welcome to GitHub Actions"
         vn_greeting="${{ inputs.name }} - xin chào talk"
         
         # Set step outputs (không phải action outputs)
@@ -34,3 +35,8 @@ runs:
         # Debug log
         echo "Generated: $full_greeting"
         echo "Generated VN: $vn_greeting"
+
+    - name: Check log action
+      shell: bash
+      run: |
+        echo "${{toJson(steps.set-greeting.outputs)}}"
