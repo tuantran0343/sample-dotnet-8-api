@@ -10,8 +10,10 @@ inputs:
 outputs:
   greeting-message:
     description: 'Lời chào đầy đủ'
+    value: 'sample lời chào'
   vietnam-greeting:
-    description: 'Lời chào Việt Nam'
+    description: 'Lời chào talk'
+    value: 'sample talke'
 
 runs:
   using: "composite"
@@ -22,9 +24,5 @@ runs:
     - name: Set greeting outputs
       shell: bash
       run: |
-        full_greeting="Hello ${{ inputs.name }}! Welcome to GitHub Actions"
-        vn_greeting="${{ inputs.name }} - xin chào việt nam"
-        
-        # Set outputs cho composite action
-        echo "greeting-message=$full_greeting" >> $GITHUB_OUTPUT
-        echo "vietnam-greeting=$vn_greeting" >> $GITHUB_OUTPUT
+        echo "greeting-message=Hello ${{ inputs.name }}! Welcome to GitHub Actions" >> $GITHUB_OUTPUT
+        echo "vietnam-greeting=${{ inputs.name }} - xin chào talk" >> $GITHUB_OUTPUT
