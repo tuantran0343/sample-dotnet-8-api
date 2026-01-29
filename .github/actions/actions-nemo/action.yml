@@ -9,16 +9,16 @@ inputs:
 
 outputs:
   greeting-message:
-    description: 'Lời chào đầy đủ'
+    description: 'Lời chào đầy đủ, phải dùng stepId để lấy output value nhé'
     value: ${{ steps.set-greeting.outputs.greeting_message }}
   vietnam-greeting:
-    description: 'Lời chào talk'
+    description: 'Lời chào talk, phải dùng stepId để lấy output value nhé'
     value: ${{ steps.set-greeting.outputs.vietnam_greeting }}
 
 runs:
   using: "composite"
   steps:
-    - run: echo "Hello ${{ inputs.name }}"
+    - run: echo "Hello ${{ inputs.name }} , global variable = $GLOBAL_VAR"
       shell: bash
 
     - name: Set greeting outputs

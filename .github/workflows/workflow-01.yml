@@ -16,6 +16,9 @@ on:
         type: string
         default: test-notify
 
+env:
+  GLOBAL_VAR: 24565
+
 jobs:
   log-simple-only:
     if: github.event.inputs.check_label == vars.TAGS_TEST_NOTIFY
@@ -50,6 +53,7 @@ jobs:
           EVENT = ${{toJson(github.event)}}
           DATA = ${{github.event.inputs.check_label}}
           "
+
   run-custom-action:
     runs-on:
       - ubuntu-slim
