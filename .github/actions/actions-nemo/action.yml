@@ -10,10 +10,10 @@ inputs:
 outputs:
   greeting-message:
     description: 'Lời chào đầy đủ'
-    value: 'sample lời chào'
+    value: ${{ steps.generate.outputs.greeting-message }}
   vietnam-greeting:
     description: 'Lời chào talk'
-    value: 'sample talke'
+    value: ${{ steps.generate.outputs.vietnam-greeting }}
 
 runs:
   using: "composite"
@@ -24,5 +24,13 @@ runs:
     - name: Set greeting outputs
       shell: bash
       run: |
-        echo "greeting-message=Hello ${{ inputs.name }}! Welcome to GitHub Actions" >> $GITHUB_OUTPUT
-        echo "vietnam-greeting=${{ inputs.name }} - xin chào talk" >> $GITHUB_OUTPUT
+        full_greeting="Hello ${{ inputs.name }}! Welcome to GitHub Actions"
+        vn_greeting="${{ inputs.name }} - xin chào talk"
+        
+        # Set step outputs (không phải action outputs)
+        echo "greeting_message=$full_greeting" >> "$GITHUB_OUTPUT"
+        echo "vietnam_greeting=$vn_greeting" >> "$GITHUB_OUTPUT"
+        
+        # Debug log
+        echo "Generated: $full_greeting"
+        echo "Generated VN: $vn_greeting"
