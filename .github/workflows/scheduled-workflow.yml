@@ -1,0 +1,18 @@
+name: Hello Python Scheduler
+
+on:
+  schedule:
+    # Chạy mỗi 2 phút
+    - cron: '*/6 * * * *'
+  workflow_dispatch:  # Cho phép chạy thủ công
+
+jobs:
+  hello:
+    runs-on: ubuntu-slim
+    
+    steps:
+      - name: Echo Hello Python
+        run: echo "hello python"
+        
+      - name: Print current time
+        run: echo "Job ran at $(date)"
