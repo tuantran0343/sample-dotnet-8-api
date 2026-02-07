@@ -7,7 +7,7 @@ permissions:
 on:
   push:
     branches:
-      - feat/add-new-string
+      - feat/*
     tags:
       - test-notify
   workflow_dispatch:
@@ -15,6 +15,9 @@ on:
       check_label:
         type: string
         default: test-notify
+
+env:
+  GLOBAL_VAR: 24565
 
 jobs:
   log-simple-only:
@@ -50,3 +53,21 @@ jobs:
           EVENT = ${{toJson(github.event)}}
           DATA = ${{github.event.inputs.check_label}}
           "
+
+  run-custom-action:
+    runs-on:
+      - ubuntu-slim
+    steps:      
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: "Run custom action nemo"
+        id: custom-action
+        uses: ./.github/actions/actions-nemo
+        with:
+          name: "Visual Code at ${{ github.run_id }}-${{ github.run_attempt }}"
+
+      - name: Use the outputs
+        run: |
+          echo "Greeting: ${{ steps.custom-action.outputs.greeting-message }}"
+          echo "VN Style: ${{ steps.custom-action.outputs.vietnam-greeting }}"
