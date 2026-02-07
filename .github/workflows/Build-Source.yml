@@ -9,6 +9,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  issues: write      # Để có quyền comment vào Issue
+  pull-requests: write # Để có quyền comment vào Pull Request
+
 jobs:
   vietnam-build:
 
