@@ -3,7 +3,7 @@ name: Hello Python Scheduler
 on:
   schedule:
     # Chạy mỗi 2 phút
-    - cron: '*/6 * * * *'
+    - cron: '0 0 * * *' 
   workflow_dispatch:  # Cho phép chạy thủ công
 
 jobs:
