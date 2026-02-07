@@ -12,7 +12,7 @@ jobs:
     
     steps:
       - name: Echo Hello Python
-        run: echo "hello python"
+        run: echo "hello python, good work"
         
       - name: Print current time
         run: echo "Job ran at $(date)"
