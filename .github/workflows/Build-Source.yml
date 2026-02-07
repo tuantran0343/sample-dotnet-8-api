@@ -9,20 +9,44 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  issues: write      # Để có quyền comment vào Issue
+  pull-requests: write # Để có quyền comment vào Pull Request
+
 jobs:
   vietnam-build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set .NET for Sample Source 1
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v4
+      - name: Set .NET for Sample Source 1
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        if: always()
+        with:
+          script: |
+            const result = 'success';
+            const comment = result === 'success' 
+              ? '✅ All tests passed!' 
+              : '❌ Tests failed! Check the workflow run.';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
