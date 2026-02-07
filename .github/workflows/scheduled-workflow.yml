@@ -1,4 +1,4 @@
-name: Hello Python Scheduler
+name: SCHEDULED-WORFLOW
 
 on:
   schedule:
