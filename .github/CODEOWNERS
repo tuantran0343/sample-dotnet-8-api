@@ -2,7 +2,7 @@
 * @tuantran0343
 
 # 2. Frontend: Khi có thay đổi trong thư mục React/Web, gán cho team Frontend
-Controllers/WeatherForecastController.cs    @tuantran0343
+**/WeatherForecastController.cs    @tuantran0343
 
 # 3. Infrastructure: Các file cấu hình Docker, K8s, Terraform
-Controllers/WeatherForecastController.cs    @tuantran0343   @anhtuan1410
+**/ContentV1Controller.cs    @anhtuan1410
