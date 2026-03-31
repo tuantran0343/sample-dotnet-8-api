@@ -19,6 +19,10 @@ namespace SampleAPI.Controllers
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
+
+            int? varData = null;
+
+            Console.WriteLine("Data => ", varData - 1);
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
