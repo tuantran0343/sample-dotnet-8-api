@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace SampleAPI.Controllers
 {
@@ -20,9 +21,7 @@ namespace SampleAPI.Controllers
         {
             _logger = logger;
 
-            int? varData = null;
-
-            Console.WriteLine("Data => ", varData - 1);
+            CodeSmell();
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -35,6 +34,16 @@ namespace SampleAPI.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        private void CodeSmell()
+        {
+            int? varData = null;
+
+            Console.WriteLine("Data => ", varData - 1);
+
+            var connectionString = "Server=tcp:sql-prod-server.database.windows.net,1433;Initial Catalog=MyDatabase;Persist Security Info=False;User ID=myAdminUser;Password=&k9#mP2$qL8@xR5!vN3^zJ7*wB4%yT;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Min Pool Size=10;Max Pool Size=100;";
+            var client = new SqlConnection(connectionString);
         }
     }
 }
