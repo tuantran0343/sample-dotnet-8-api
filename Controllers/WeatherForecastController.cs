@@ -10,6 +10,7 @@ namespace SampleAPI.Controllers
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy1", 
             "Hot", "Sweltering", "Scorching", "Weather", "Calm", "Please", "Mate",
+            "Hondata",
             "Brandee", "Toyota", "Merc"
         };
 
