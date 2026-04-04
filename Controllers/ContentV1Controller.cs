@@ -16,8 +16,13 @@ namespace SampleAPI.Controllers
         [HttpGet(template: "get-data")]
         public IEnumerable<string> Get()
         {
-            List<string> p3 = ["asd", "1222", "666"];
+            List<string> p3 = ["asd", "1222", "666", "777","1111", "123123123"];
             return p3;
         }
     }
+}
+
+public class SimpleModel
+{
+    public string Name { get; set; }
 }

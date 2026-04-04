@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Push notify to Slack Dev4
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Image to Docker Hub"]   # Tên chính xác của workflow A
+    types:
+      - completed
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  brazil-build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Chỉ chạy nếu success
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Notify Slack on Success
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: webhook-trigger
+          payload: |
+            {
+              "text": "🚀 Deploy thành công! Image mới đã push lên Docker Hub"
+            }

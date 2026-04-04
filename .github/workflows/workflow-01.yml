@@ -1,0 +1,52 @@
+name: WORKFLOW-NET-01
+
+permissions:
+  issues: write
+  contents: read
+
+on:
+  push:
+    branches:
+      - feat/add-new-string
+    tags:
+      - test-notify
+  workflow_dispatch:
+    inputs:
+      check_label:
+        type: string
+        default: test-notify
+
+jobs:
+  log-simple-only:
+    if: github.event.inputs.check_label == vars.TAGS_TEST_NOTIFY
+    runs-on:
+      - ubuntu-slim
+    steps:
+      - name: "console simple log"
+        run: |
+          echo 'Hello world'
+          echo 'Current label in vars is "${{vars.TAGS_TEST_NOTIFY}}"'
+          echo 'Next value is "${{github.event.inputs.check_label}}"'
+
+  always-log:
+    runs-on: ubuntu-slim
+    steps:
+      - name: "always console log"
+        run: |
+          echo "Always. Hi! there"
+          echo "2 + 3 = $((2 + 3))"
+
+  get-info:
+    runs-on:
+      - ubuntu-slim
+    steps:
+      - name: "log information"
+        run: |
+          echo "
+          EVENT_NAME = ${{github.event_name}}
+          LABEL NAME => ${{ github.event.label.name }} 
+          ref_name = ${{ github.ref_name}} 
+          current VARS = ${{vars.TAGS_TEST_NOTIFY}}
+          EVENT = ${{toJson(github.event)}}
+          DATA = ${{github.event.inputs.check_label}}
+          "

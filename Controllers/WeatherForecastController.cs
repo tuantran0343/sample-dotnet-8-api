@@ -8,7 +8,10 @@ namespace SampleAPI.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy1", 
+            "Hot", "Sweltering", "Scorching", "Weather", "Calm", "Please", "Mate",
+            "Hondata",
+            "Brandee", "Toyota", "Merc"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
