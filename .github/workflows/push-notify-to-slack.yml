@@ -4,7 +4,7 @@ name: Push notify to Slack Dev4
 
 on:
   workflow_run:
-    workflows: ["Build and Push Image to Docker Hub"]   # Tên chính xác của workflow A
+    workflows: ["Build and Push Image to Docker Hub", "SCHEDULED-WORFLOW"]   # Tên chính xác của workflow A
     types:
       - completed
     branches: [ main ]
